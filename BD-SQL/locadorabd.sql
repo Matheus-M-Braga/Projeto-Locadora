@@ -93,7 +93,7 @@ CREATE TABLE `gerenciadores` (
 
 LOCK TABLES `gerenciadores` WRITE;
 /*!40000 ALTER TABLE `gerenciadores` DISABLE KEYS */;
-INSERT INTO `gerenciadores` VALUES (1,'joilsonmatos@gmail.com','12345678');
+INSERT INTO `gerenciadores` VALUES (1,'responsavel@gmail.com','12345678');
 /*!40000 ALTER TABLE `gerenciadores` ENABLE KEYS */;
 UNLOCK TABLES;
 
