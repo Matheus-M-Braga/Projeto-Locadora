@@ -50,7 +50,11 @@ header{
         margin-left: 110px;
     }
 }
-
+@media screen and (min-width: 1920px){
+    .navbar-expand-lg .navbar-collapse{
+        margin-left: 155px;
+    }
+}
 nav.navbar{
     height: 100%;
     background-color: rgba(0, 0, 0, 0.905);
