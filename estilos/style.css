@@ -50,7 +50,11 @@ header{
         margin-left: 110px;
     }
 }
-
+@media screen and (min-width: 1920px){
+    .navbar-expand-lg .navbar-collapse{
+        margin-left: 155px;
+    }
+}
 nav.navbar{
     height: 100%;
     background-color: rgba(0, 0, 0, 0.905);
@@ -391,11 +395,33 @@ div#container-maisalugados label{
 .itens img{
     cursor: pointer;
 }
-
+.page-item .page-link{
+    color: goldenrod;
+    background-color: #264347;;
+}
+.page-item .page-link:hover{
+    color: goldenrod;
+    background-color: #162426;
+}
+.page-item .page-link:focus, .page-item .page-link:active{
+    color: goldenrod;
+    background-color: #162426;
+    border: 0;
+    box-shadow: 0;
+}
+li.active .page-link{
+    background-color: #162426;
+    color: goldenrod;
+    border: 0.3px solid black;
+    padding: 0.375rem 0.750rem;
+}
+.pagination-gui{
+    margin: 0 auto;
+}
 /* Livros */
 .grid-users{
     display: grid;
-    grid-template-columns: auto auto auto auto auto auto auto;
+    grid-template-columns: auto auto auto auto auto auto auto auto;
     border: 1px solid gray;
     border-radius: 5px;
     box-shadow: 1.5px 1.5px 2px rgba(0, 0, 0, 0.102), -1.5px -1.5px 2px rgba(0, 0, 0, 0.100);

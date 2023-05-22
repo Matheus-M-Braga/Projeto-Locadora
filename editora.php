@@ -3,6 +3,9 @@
 
     include_once('config.php');
 
+    $pagina = filter_input(INPUT_GET, "pagina", FILTER_SANITIZE_NUMBER_INT);
+
+    // Insert
     if(isset($_POST['submit'])){
     
         include_once('config.php');
@@ -23,6 +26,7 @@
         }
     }
 
+    // Teste da seção
     if((!isset($_SESSION['email']) == true) and (!isset($_SESSION['senha']) == true)){
         unset($_SESSION['email']);
         unset($_SESSION['senha']);
@@ -40,10 +44,7 @@
     }
  
     $result = $conexao -> query($sql);
-        
-    
 ?>
-       
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -135,26 +136,25 @@
             </form>
         </div>    
           
-       <div class="grid-editora">
-            <div class="titulos">ID</div>
-            <div class="titulos">NOME</div>
-            <div class="titulos">EMAIL</div>
-            <div class="titulos">TELEFONE</div>
-            <div class="titulos">AÇÕES</div>
+       
             <?php
-                while($editora_data = mysqli_fetch_assoc($result)){
-                    echo "<div class='itens'>".$editora_data['CodEditora']."</div>"
-                    ."<div class='itens'>".$editora_data['nome']."</div>"
-                    ."<div class='itens'>".$editora_data['email']."</div>"
-                    ."<div class='itens'>".$editora_data['telefone']."</div>"
-                    ."<div class='itens'>
-                        <a href='edit/edit-editora.php?id=$editora_data[CodEditora]'><img src='img/pencil.png' alt='PencilEdit' title='Editar'></a>
-                        &nbsp;&nbsp;
-                        <a href='delete/delet-editora.php?id=$editora_data[CodEditora]'><img src='img/bin.png' alt='Bin' title='Deletar'></a>
-                    </div>";
-                }
+                
             ?>
        </div>
+       <!-- Tag responsável por exibir a listagem da página list -->
+       <span class="listar-editoras"></span>
+       <!-- Script para listagem de usuários -->
+       <script>
+            const body = document.querySelector(".listar-editoras");
+
+            const listarUsuarios = async(pagina) => {
+                const dados = await fetch("list/list-editora.php?pagina=" + pagina);
+                const resposta = await dados.text();
+                body.innerHTML = resposta;
+            }
+
+            listarUsuarios(1);
+        </script>
     </main>
 </body>
 </html>

@@ -3,6 +3,8 @@
 
     include_once('config.php');
 
+    $pagina = filter_input(INPUT_GET, "pagina", FILTER_SANITIZE_NUMBER_INT);
+
     // inserção dos dados na tebela
     if(isset($_POST['submit'])){
         include_once('config.php');
@@ -71,6 +73,7 @@
         }
     }
 
+    // Teste da seção
     if((!isset($_SESSION['email']) == true) and (!isset($_SESSION['senha']) == true)){
         unset($_SESSION['email']);
         unset($_SESSION['senha']);
@@ -206,49 +209,20 @@
             </div>
             </form>
         </div>                          
-       <div class="grid-aluguel">
-            <div class="titulos">ID</div>
-            <div class="titulos">LIVRO ALUGADO</div>
-            <div class="titulos">USUÁRIO QUE ALUGOU</div>
-            <div class="titulos">DATA DO ALUGUEL</div>
-            <div class="titulos">PREVISÃO DE DEVOLUÇÃO</div>
-            <div class="titulos">DATA DE DEVOLUÇÃO</div>
-            <div class="titulos">AÇÕES</div>
-            <?php
-                while($aluguel_data = mysqli_fetch_assoc($result)){
-                    $alug_dat = date("d/m/Y", strtotime($aluguel_data['data_aluguel']));
-                    $dev_dat = date("d/m/Y", strtotime($aluguel_data['prev_devolucao']));
+        <!-- Tag responsável por exibir a listagem da página list -->
+        <span class="listar-alugueis"></span>
+        <!-- Script para listagem de alugueis -->
+        <script>
+            const body = document.querySelector(".listar-alugueis");
 
-                    echo 
-                    "<div class='itens'>".$aluguel_data['CodAluguel']."</div>"
-                    ."<div class='itens'>".$aluguel_data['livro']."</div>"
-                    ."<div class='itens'>".$aluguel_data['usuario']."</div>"
-                    ."<div class='itens'>".$alug_dat."</div>"
-                    ."<div class='itens'>".$dev_dat."</div>";
+            const listarUsuarios = async(pagina) => {
+                const dados = await fetch("list/list-aluguel.php?pagina=" + pagina);
+                const resposta = await dados.text();
+                body.innerHTML = resposta;
+            }
 
-                    if($aluguel_data['data_devolucao'] == 0){   
-                        echo "<div class='itens'>Não Devolvido</div>";
-                        echo "<div class='itens'>
-                        <a href='edit/edit-aluguel.php?id=$aluguel_data[CodAluguel]'><img src='img/check.png' alt='Devolver' title='Devolver'></a>
-                        </div>";
-                    }
-                    else{
-                        $hoje = date("Y/m/d");
-                        $previsao = $aluguel_data['prev_devolucao'];
-
-                        if(strtotime($previsao) >= strtotime($hoje)){
-                            echo "<div class='itens'>".$aluguel_data['data_devolucao']."(No prazo)</div>";
-                            echo "<div class='itens'><a href='delete/delet-aluguel.php?id=$aluguel_data[CodAluguel]'><img src='img/bin.png' alt='Bin' title='Deletar'></a></div>";
-                        }
-                        else{
-                            echo "<div class='itens'>".$aluguel_data['data_devolucao']."(Atrasado)</div>";
-                            echo "<div class='itens'><a href='delete/delet-aluguel.php?id=$aluguel_data[CodAluguel]'><img src='img/bin.png' alt='Bin' title='Deletar'></a></div>";
-                        }
-                    }
-                }   
-            ?>
-       </div>
-        
+            listarUsuarios(1);
+        </script>
     </main>
 </body>
 </html>

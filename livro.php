@@ -3,6 +3,8 @@
 
     include_once('config.php');
 
+    $pagina = filter_input(INPUT_GET, "pagina", FILTER_SANITIZE_NUMBER_INT);
+
     // Insert
     if(isset($_POST['submit'])){
         include_once('config.php');
@@ -15,7 +17,7 @@
 
         $sqllivro = "SELECT * FROM livros WHERE nome = '$nomeLivro' AND autor = '$autor'";
         $resultado = $conexao -> query($sqllivro);
-
+        
         if(mysqli_num_rows($resultado) == 1){
             echo "<script> window.alert ('Livro já cadastrado.')</script>";
         }
@@ -112,8 +114,8 @@
                     </div>
                     <div class="input-modal" id="area-editora">
                         <div class="select">
-                            <select name="editora" id="editoras_opcoes">
-                                <option>Editora:</option>
+                            <select name="editora" value="Editora:">
+                            <option value="Editora:">Editora:</option>
                                 <?php
                                 while($editora_data = mysqli_fetch_assoc($resultEditora_conect)){
                                     echo "<option>".$editora_data['nome']."</option>";
@@ -151,31 +153,20 @@
             </div>
             </form>
         </div>                          
-        <div class="grid-users">
-            <div class="titulos">ID</div>
-            <div class="titulos">NOME</div>
-            <div class="titulos">AUTOR</div>
-            <div class="titulos">EDITORA</div>
-            <div class="titulos">LANÇAMENTO</div>
-            <div class="titulos">QUANTIDADE</div>
-            <div class="titulos">AÇÕES</div>
-            <?php
-                while($livro_data = mysqli_fetch_assoc($result)){
-                    $lanca = date("d/m/Y", strtotime($livro_data['lancamento']));
-                    echo "<div class='itens'>".$livro_data['CodLivro']."</div>"
-                    ."<div class='itens'>".$livro_data['nome']."</div>"
-                    ."<div class='itens'>".$livro_data['autor']."</div>"
-                    ."<div class='itens'>".$livro_data['editora']."</div>"
-                    ."<div class='itens'>".$lanca."</div>"
-                    ."<div class='itens'>".$livro_data['quantidade']."</div>"
-                    ."<div class='itens'>
-                    <a href='edit/edit-livro.php?id=$livro_data[CodLivro]'><img src='img/pencil.png' alt='PencilEdit' title='Editar'></a>
-                    &nbsp;&nbsp;
-                    <a href='delete/delet-livro.php?id=$livro_data[CodLivro]'><img src='img/bin.png' alt='Bin' title='Deletar'></a>
-                    </div>";
-                }
-            ?>
-       </div>
+       <!-- Tag responsável por exibir a listagem na página list -->
+       <span class="listar-livros"></span>
+       <!-- Script para listagem de usuários -->
+       <script>
+            const body = document.querySelector(".listar-livros");
+
+            const listarUsuarios = async(pagina) => {
+                const dados = await fetch("list/list-livro.php?pagina=" + pagina);
+                const resposta = await dados.text();
+                body.innerHTML = resposta;
+            }
+
+            listarUsuarios(1);
+       </script>
     </main>
 </body>
 </html>

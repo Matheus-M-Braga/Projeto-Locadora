@@ -120,11 +120,11 @@
             </div>
         </div>
         <div class="" id="container-maisalugados">
-            <h3>Status dos livros</h3>
+            <h3>Livros</h3>
             <h4>Total:</h4> 
             <?php echo "<span style='font-size: 28px;'>".$totais_livros."</span style='font-size: 28px;'>" ?>
 
-            <h4>Empréstmos:</h4> 
+            <h4>Empréstimos:</h4> 
             <?php echo "<span style='font-size: 28px; display: inline;'>".$quantidade_alugueis."</span>" ?>
         </div>
 

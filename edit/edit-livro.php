@@ -60,8 +60,8 @@
                 </div>
                 <div class="input-modal" id="area-editora">
                     <div class="select">
-                        <select name="editora" id="">
-                            <option value="Cuzinho">Selecione</option>
+                        <select name="editora" id="" value="Editora:">
+                            <option value="Editora:"><?php echo $editora; ?></option>
                             <?php
                             while($editora_data = mysqli_fetch_assoc($resultEditora_conect)){
                                 echo "<option>".$editora_data['nome']."</option>";

@@ -3,6 +3,8 @@
 
     include_once('config.php');
 
+    $pagina = filter_input(INPUT_GET, "pagina", FILTER_SANITIZE_NUMBER_INT);
+
     // Insert
     if(isset($_POST['submit'])){
         include_once('config.php');
@@ -24,6 +26,7 @@
         }
     }
 
+    // Teste da seção
     if((!isset($_SESSION['email']) == true) and (!isset($_SESSION['senha']) == true)){
         unset($_SESSION['email']);
         unset($_SESSION['senha']);
@@ -83,7 +86,6 @@
                     <a class="nav-link" href="aluguel.php">Aluguel</a>
                     <a href="sair.php"><button class="btn btn-outline-danger" id="botao-sair" type="submit">SAIR</button></a>
                 </div>
-                
                 </div>
             </div>
         </nav>
@@ -91,32 +93,43 @@
     <main>
         <!-- Modal -->
         <div id="vis-modal" class="modal">
+            
             <div class="conteudo-modal">
                     <img src="img/cross.png" alt="butão-fechar" class="fechar-modal" onclick="fecharModal('vis-modal')">
                 <div class="corpo-modal">
-                  <form action="user.php" method="POST">
+                  <form action="user.php" method="POST" id="formulario-user">
                     <br>
                     <p class="titulo-modal">Cadastro do Usuário</p>
+
                     <div class="input-modal" id="area-nome">
-                      <input type="text" placeholder=" " name="nome-user" required autocomplete="off">
-                      <label for="email">Nome:</label>
+                      <input type="text" placeholder=" " name="nome-user" autocomplete="off" id="input-nome" class="required" oninput="ValidateNome()">
+                      <label for="input-nome">Nome:</label>
+                      <br><span class="span-required" style="display: none; color:red; font-size: 12.5px;">• Campo obrigatório •</span>
                     </div>
+
                     <div class="input-modal" id="area-cidade">
-                      <input type="text" placeholder=" " name="cidade" required autocomplete="off">
-                      <label for="senha">Cidade:</label>
+                      <input type="text" placeholder=" " name="cidade" autocomplete="off" id="input-cidade" class="required" oninput="ValidateCidade()">
+                      <label for="input-cidade">Cidade:</label>
+                      <br><span class="span-required" style="display: none; color:red; font-size: 12.5px;">• Campo obrigatório •</span>
                     </div>
+
                     <div class="input-modal" id="area-endereco">
-                        <input type="text" placeholder=" " name="endereco" required autocomplete="off">
-                        <label for="senha">Endereço:</label>
+                        <input type="text" placeholder=" " name="endereco" autocomplete="off" id="input-endereco" class="required" oninput="ValidateEndereco()">
+                        <label for="input-endereco">Endereço:</label>
+                        <br><span class="span-required" style="display: none; color:red; font-size: 12.5px;">• Campo obrigatório •</span>
                     </div>
+
                     <div class="input-modal" id="area-email">
-                        <input type="text" placeholder=" " name="email" required autocomplete="off">
+                        <input type="text" placeholder=" " name="email" autocomplete="off" id="input-email" class="required" oninput="ValidateEmail()">
                         <label for="senha">E-mail:</label>
+                        <br><span class="span-required" style="display: none; color:red; font-size: 12.5px;">• Campo obrigatório •</span>
                     </div>
+
                     <div class="input-modal" id="area-email">
-                        <input type="text" placeholder="*Facultativo*" name="cpf" autocomplete="off">
-                        <label for="senha">CPF: <i style="font-size: 12.5px;">*Opcional*</i></label>
+                        <input type="text" placeholder="*Facultativo*" name="cpf" autocomplete="off" id="input-cpf">
+                        <label for="input-cpf">CPF:<i style="font-size: 12.5px;">*Opcional*</i></label>
                     </div>
+                    
                     <input type="reset" value="Limpar" class="cancelar-btn">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <input name="submit" type="submit" value="Registrar" class="entrar-btn">
@@ -124,11 +137,86 @@
                 </div>
             </div>
         </div>
+        <!-- Script da validação -->
+        <script>
+            // Resgate de dados do formulário
+            var form = document.getElementById('formulario-user');
+            var campos = document.querySelectorAll('.required');
+            var spans = document.querySelectorAll('.span-required');
+            var emailRegex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
+            
+            // Gerando a validação
+            form.addEventListener('submit',(event)=>{
+                if(campos[0].value.length!=0 && campos[1].value.length!=0 && campos[2].value.length!=0 &&   campos[3].value.length!=0){
+                    
+                }
+                else{
+                    ValidateNome();
+                    ValidateCidade();
+                    ValidateEndereco();
+                    ValidateEmail();
+                    event.preventDefault();
+                }
+            })
+                
+            // Função para correções
+            function setError(index){
+                campos[index].style.color = '#e63636'
+                spans[index].style.display ='block'
+            }
+            // Função para remover o alerta 
+            function removeError(index){
+                campos[index].style.color = ''
+                spans[index].style.display ='none'
+            }
+
+            // Validação individual
+
+            // nome
+            function ValidateNome(){
+                if(campos[0].value.length < 3){
+                    setError(0);
+                }
+                else{
+                    removeError(0)
+                }
+            }
+
+            // cidade
+            function ValidateCidade(){
+                if(campos[1].value.length < 3){
+                    setError(1);
+                }
+                else{
+                    removeError(1)
+                }
+            }
+
+            // endereco
+            function ValidateEndereco(){
+                if(campos[2].value.length < 3){
+                    setError(2);
+                }
+                else{
+                    removeError(2)
+                }
+            }
+
+            // email
+            function ValidateEmail(){
+                if(emailRegex.test(campos[3].value)){
+                    removeError(3);
+                }
+                else{
+                    setError(3)
+                }
+            }
+        </script>
         <!-- GRID -->
         <div class="grid-header">
             <span class="titulo-pg">Usuários</span>
             <div class="novo-btn" onclick="abrirModal('vis-modal')">NOVO +</div>
-            <form class="searchbox sbx-custom">
+            <form class="searchbox sbx-custom" style="margin-left: 350px;">
             <div role="search" class="sbx-custom__wrapper">
                 <input type="search" name="search" placeholder="Pesquisar..." autocomplete="off" class="sbx-custom__input" id="pesquisadora">
                 <button type="submit" class="sbx-custom__submit" onclick="searchData()">
@@ -136,30 +224,21 @@
                 </button>
             </div>
             </form>
-        </div>                          
-       <div class="container-grid">
-                <div class="titulos">ID</div>
-                <div class="titulos">NOME</div>
-                <div class="titulos">CIDADE</div>
-                <div class="titulos">ENDEREÇO</div>
-                <div class="titulos">EMAIL</div>
-                <div class="titulos">AÇÕES</div>
-                <?php
-                    while($user_data = mysqli_fetch_assoc($result)){
-                        echo "<div class='itens'>".$user_data['CodUsuario']."</div>"
-                        ."<div class='itens'>".$user_data['Nome']."</div>"
-                        ."<div class='itens'>".$user_data['Cidade']."</div>"
-                        ."<div class='itens'>".$user_data['Endereco']."</div>"
-                        ."<div class='itens'>".$user_data['Email']."</div>"
-                        ."<div class='itens'>
-                            <a href='edit/edit-user.php?id=$user_data[CodUsuario]'><img src='img/pencil.png' alt='PencilEdit' title='Editar'></a>
-                            &nbsp;&nbsp;
-                            <a href='delete/delet-user.php?id=$user_data[CodUsuario]'><img src='img/bin.png' alt='Bin' title='Deletar'></a>
-                        </div>";
-                    }
-                ?>
-       </div>
-        
+        </div>                      
+        <!-- Tag responsável por exibir a listagem da página list -->
+        <span class="listar-usuarios"></span>
+        <!-- Script para listagem de usuários -->
+       <script>
+            const body = document.querySelector(".listar-usuarios");
+
+            const listarUsuarios = async(pagina) => {
+                const dados = await fetch("list/list-user.php?pagina=" + pagina);
+                const resposta = await dados.text();
+                body.innerHTML = resposta;
+            }
+
+            listarUsuarios(1);
+        </script>
     </main>
 </body>
 </html>
