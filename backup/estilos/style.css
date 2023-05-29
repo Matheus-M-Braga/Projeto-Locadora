@@ -214,9 +214,6 @@ option{
     font-weight: bold;
 }
 /* Searchbar */
-form.searchbox{
-    margin-left: 350px;
-}
 .sbx-custom {
     display: inline-block;
     position: relative;
@@ -337,9 +334,6 @@ div#container-maisalugados label{
     text-align: center;
     padding: 15px;
     color: white;
-}
-.titulos a{
-    text-decoration: none;
 }
 .container-grid .itens{
     font-size: 16px;

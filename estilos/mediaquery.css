@@ -1,0 +1,23 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Castoro+Titling&display=swap');
+
+/* Celular */
+@media screen and (max-width: 500px){
+   main{
+      background-color: rgb(155, 71, 71);
+   }
+
+   .titulo-pg{
+      display: block;
+   }
+   .novo-btn{
+      margin-left: 0;
+   }
+   form.searchbox{
+      margin-left: 125px;
+      margin-top: -10px;
+   }
+   .sbx-custom{
+      width: 235px;
+   }
+}

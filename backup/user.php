@@ -45,7 +45,7 @@
     $result = $conexao -> query($sql);
 
     // Número de registros por página
-    $registrosPorPagina = 5;
+    $registrosPorPagina = 7;
     $paginaAtual = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
     $offset = ($paginaAtual - 1) * $registrosPorPagina;
     $search = isset($_GET['search']) ? $_GET['search'] : '';
@@ -189,7 +189,7 @@
         <div class="grid-header">
             <span class="titulo-pg">Usuários</span>
             <div class="novo-btn" onclick="abrirModal('vis-modal')">NOVO +</div>
-            <form class="searchbox sbx-custom">
+            <form class="searchbox sbx-custom" style="margin-left: 350px;">
             <div role="search" class="sbx-custom__wrapper">
                 <input type="search" name="search" placeholder="Pesquisar..." autocomplete="off" class="sbx-custom__input" id="pesquisadora">
                 <button type="submit" class="sbx-custom__submit" onclick="searchData()">

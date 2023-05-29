@@ -282,9 +282,15 @@
                 else{
                     $hoje = date("Y/m/d");
                     $previsao = $aluguel_data['prev_devolucao'];
-                    
-                    echo "<div class='itens'>".$aluguel_data['data_devolucao']."</div>";
-                    echo "<div class='itens'><a href='delete/delet-aluguel.php?id=$aluguel_data[CodAluguel]'><img src='img/bin.png' alt='Bin' title='Deletar'></a></div>";
+
+                    if(strtotime($previsao) >= strtotime($hoje)){
+                        echo "<div class='itens'>".$aluguel_data['data_devolucao']."(Entregue no prazo)</div>";
+                        echo "<div class='itens'><a href='delete/delet-aluguel.php?id=$aluguel_data[CodAluguel]'><img src='img/bin.png' alt='Bin' title='Deletar'></a></div>";
+                    }
+                    else{
+                        echo "<div class='itens'>".$aluguel_data['data_devolucao']."(Com atraso)</div>";
+                        echo "<div class='itens'><a href='delete/delet-aluguel.php?id=$aluguel_data[CodAluguel]'><img src='img/bin.png' alt='Bin' title='Deletar'></a></div>";
+                    }
                 }
             }
             echo "</div><br>";

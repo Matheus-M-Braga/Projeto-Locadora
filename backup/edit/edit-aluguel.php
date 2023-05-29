@@ -11,11 +11,9 @@
 
         $aluguel_data = mysqli_fetch_assoc($resultSelect);
         $livro = $aluguel_data['livro'];
-        $previsao = $aluguel_data['prev_devolucao'];
 
         $hoje = new DateTime();
         $hoje2 = $hoje -> format('d/m/Y');
-        $hoje3 = date("Y/m/d");
 
 
         // Conexão tabela Livros
@@ -31,14 +29,8 @@
         $sqlResultAlterar = $conexao -> query($sqlAlterar);
 
         if($resultSelect -> num_rows > 0){
-            if(strtotime($previsao) >= strtotime($hoje3)){
-                $sqlUpdate = "UPDATE alugueis SET data_devolucao = '$hoje2(Entregue no prazo)' WHERE CodAluguel = $CodAluguel";
-                $resultUpdate = $conexao -> query($sqlUpdate);
-            }
-            else{
-                $sqlUpdate = "UPDATE alugueis SET data_devolucao = '$hoje2(Com atraso)' WHERE CodAluguel = $CodAluguel";
-                $resultUpdate = $conexao -> query($sqlUpdate);
-            }
+            $sqlUpdate = "UPDATE alugueis SET data_devolucao = '$hoje2' WHERE CodAluguel = $CodAluguel";
+            $resultUpdate = $conexao -> query($sqlUpdate);
         }
         else{
             header('Location: ../aluguel.php');
