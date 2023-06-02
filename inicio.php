@@ -78,10 +78,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/f4c3c17e91.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="estilos/style.css?<?php echo rand(1, 1000); ?>">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="estilos/style.css?<?php echo rand(1, 1000); ?>" media="all">
+    <link rel="stylesheet" href="estilos/mediaquery.css?<?php echo rand(1, 1000); ?>">
     <title>WDA Livraria</title>
 </head>
 <body>
@@ -105,55 +106,53 @@
             </div>
         </nav>
     </header>
-    
     <main>                          
-        <div class="" id="container-ultimoalugado">
-            <h3>Livro mais alugado</h3>
-            <div id="top">  
-                <?php if(isset($mais_alug)){
-                echo "<h4>".$mais_alug."</h4>";
-                }
-                else{
-                echo " <h4>Aguardando dados...</h4> ";
-                }
-                ?> 
+        <div class="grid-dash">
+            <div class="" id="container-maisalugados">
+                <h3>Livros</h3>
+                <h4>Total:</h4>
+                <?php echo "<span style='font-size: 28px;'>".$totais_livros."</span style='font-size: 28px;'>" ?>
+                <h4>Empréstimos:</h4>
+                <?php echo "<span style='font-size: 28px; display: inline;'>".$quantidade_alugueis."</span>" ?>
+            </div>
+            <div class="" id="container-ultimoalugado">
+                <h3>Livro mais alugado</h3>
+                <div id="top">
+                    <?php if(isset($mais_alug)){
+                    echo "<h4>".$mais_alug."</h4>";
+                    }
+                    else{
+                    echo " <h4>Aguardando dados...</h4> ";
+                    }
+                    ?>
+                </div>
+            </div>
+            <div class="" id="container-emprestados">
+                <h3>Status dos Alugueis:</h3>
+                <h4>Entregues:</h4>
+                <?php echo  "<span style='font-size: 28px;'>".$total_devol."</span>"; ?>
+            
+                <h4>Não entregues:</h4>
+                <?php echo"<span style='font-size: 28px;'>".$total_nao_devo."</span>"; ?>
+            
+                <h4>Últmo livro alugado:</h4>
+                <?php
+                    if(isset($ultimo_alugado)){
+                        echo "<span style='font-size: 28px;'>".$ultimo_livro."</span>";
+                    }
+                    else{
+                        echo "<span style='font-size: 28px;'>Aguardando dados...</span>";
+                    }
+                ?>
+                <br>
             </div>
         </div>
-        <div class="" id="container-maisalugados">
-            <h3>Livros</h3>
-            <h4>Total:</h4> 
-            <?php echo "<span style='font-size: 28px;'>".$totais_livros."</span style='font-size: 28px;'>" ?>
-
-            <h4>Empréstimos:</h4> 
-            <?php echo "<span style='font-size: 28px; display: inline;'>".$quantidade_alugueis."</span>" ?>
-        </div>
-
-        <div class="" id="container-emprestados">
-            <h3>Status dos Alugueis:</h3>
-
-            <h4>Entregues:</h4>
-            <?php echo  "<span style='font-size: 28px;'>".$total_devol."</span>"; ?>
-            
-            <h4>Não entregues:</h4>
-            <?php echo"<span style='font-size: 28px;'>".$total_nao_devo."</span>"; ?>
-            
-            <h4>Últmo livro alugado:</h4> 
-            <?php 
-                if(isset($ultimo_alugado)){
-                    echo "<span style='font-size: 28px;'>".$ultimo_livro."</span>"; 
-                }
-                else{
-                    echo "<span style='font-size: 28px;'>Aguardando dados...</span>";
-                }
-            ?>
-            <br>
-        </div>
-        <br>
+        <br><br>
         <div id="grafico" class="container bg-light">
             <div style="text-align:center;">
               <h2>Livros mais alugados: </h2>
             </div>
-            <canvas id="grafico01" width="300px" style="margin-top:-6px;"></canvas>
+            <canvas id="grafico01" width="200px" style="margin-top:-6px;"></canvas>
             <div>
             </div>
         </div>    
@@ -166,10 +165,10 @@
             data: {
             labels: [ "<?php  echo $nomes[0]; ?>","<?php  echo $nomes[1]; ?>","<?php  echo $nomes[2]; ?>"],
             datasets: [{
-                label: 'Mais Alugados',
+                label: 'Mais Alugado',
                 data: ["<?php echo $info[0]; ?>","<?php echo $info[1]; ?>","<?php echo $info[2]; ?>"],
                 backgroundColor: ['rgba(128, 0, 0)','rgb(65, 69, 94)','rgb(182, 143, 43)'],
-                borderWidth: 0
+                borderWidth: 1,
             }]
             },
             options: {

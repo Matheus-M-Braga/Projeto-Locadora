@@ -34,13 +34,17 @@ header{
     font-family: 'Castoro';
     font-size: 20px;
 }
+@media screen and (max-width: 1090px){
+    .navbar-collapse{
+        display: block;
+    }
+}
 @media screen and (max-width: 990px){
     .navbar-collapse{
         background-color: rgba(0, 0, 0, 0.905);
         padding: 15px;
         width: 100px;
         border-radius: 0px 0px 15px 15px;
-        margin-top: 7px;
         z-index: 3;
     }
 }
@@ -291,40 +295,64 @@ form.searchbox{
 }
 
 /* home */
+div.grid-dash{
+    display: grid;
+    grid-template-columns: auto auto auto; 
+    width: 100%; 
+    justify-content: space-evenly;
+}
 div#container-ultimoalugado{
     border: 1px solid var(--cor3);
     border-radius: 10px;
-    margin-top: 40px;
-    width: 900px;
+    width: fit-content;
+    height: fit-content;
     padding: 10px;
-    margin-left: 30px;
 }
 div#container-maisalugados{
     border: 1px solid var(--cor3);
     border-radius: 10px;  
-    width: 900px;
+    width: fit-content;
+    height: fit-content;
     padding: 10px;
-    margin-left: 30px;
-    margin-top: 30px;
 }
 div#container-emprestados{
     border: 1px solid var(--cor3);
     border-radius: 10px;
-    width: 900px;
+    width: fit-content;
+    height: fit-content;
     padding: 10px;
-    margin-left: 30px;
-    margin-top: 30px;
 }
 div#container-maisalugados label{
     font-size: 25px;
     color: #006aba;
 }
+.bg-light{
+    --bs-bg-opacity: 0;
+    background-color: rgba(0, 0, 0, 0.905); 
+}
+canvas#grafico01{
+    background-color: rgb(224, 224, 224);
+}
 
+/* Search local */
+#search-user{
+    margin-left: 434px;
+}
+#search-livro{
+    margin-left: 487px;
+}
+#search-editora{
+    margin-left: 444px;
+}
+#search-alug{
+    margin-left: 437px;
+}
 /*Configurões das grids*/
 
 /*Users*/
 .container-grid{
     font-family: 'Source Sans Pro', sans-serif;
+    width: 100%;
     display: grid;
     grid-template-columns: auto auto auto auto auto auto;
     border: 1px solid gray;
@@ -333,9 +361,9 @@ div#container-maisalugados label{
 }
 .titulos{
     background-color: var(--cor3);
-    font-size: 16px;
+    font-size: 15px;
     text-align: center;
-    padding: 15px;
+    padding: 15px 10px 10px 10px;
     color: white;
 }
 .titulos a{

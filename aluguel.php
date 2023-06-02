@@ -91,7 +91,7 @@
     $result = $conexao -> query($sql);
 
     // Número de registros por página
-    $registrosPorPagina = 7;
+    $registrosPorPagina = 5;
     $paginaAtual = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
     $offset = ($paginaAtual - 1) * $registrosPorPagina;
     $search = isset($_GET['search']) ? $_GET['search'] : '';
@@ -127,6 +127,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="estilos/style.css?<?php echo rand(1, 1000); ?>">
+    <link rel="stylesheet" href="estilos/mediaquery.css?<?php echo rand(1, 1000); ?>">
     <script src="javascript/javascript.js"></script>
     <script>
         var search = document.getElementById('pesquisadora')
@@ -241,7 +242,7 @@
         <div class="grid-header">
             <span class="titulo-pg">Alugueis</span>
             <div class="novo-btn" onclick="abrirModal('vis-modal')">NOVO +</div>
-            <form class="searchbox sbx-custom">
+            <form class="searchbox sbx-custom" id="search-alug">
             <div role="search" class="sbx-custom__wrapper">
                 <input type="search" name="search" placeholder="Pesquisar..." autocomplete="off" class="sbx-custom__input" id="pesquisadora">
                 <button type="submit" class="sbx-custom__submit" onclick="searchData()">

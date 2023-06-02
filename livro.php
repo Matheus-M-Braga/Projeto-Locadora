@@ -197,7 +197,7 @@
         <div class="grid-header">
             <span class="titulo-pg">Livros</span>
             <div class="novo-btn" onclick="abrirModal('vis-modal')">NOVO +</div>
-            <form class="searchbox sbx-custom" style="margin-left: 520px;">
+            <form class="searchbox sbx-custom" id="search-livro">
             <div role="search" class="sbx-custom__wrapper">
                 <input type="search" name="search" placeholder="Pesquisar..." autocomplete="off" class="sbx-custom__input" id="pesquisadora">
                 <button type="submit" class="sbx-custom__submit" onclick="searchData()">

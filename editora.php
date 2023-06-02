@@ -205,7 +205,7 @@
         <div class="grid-header">
             <span class="titulo-pg">Editoras</span>
             <div class="novo-btn" onclick="abrirModal('vis-modal')">NOVO +</div>
-            <form class="searchbox sbx-custom" style="margin-left: 483px;">
+            <form class="searchbox sbx-custom" id="search-editora">
             <div role="search" class="sbx-custom__wrapper">
                 <input type="search" name="search" placeholder="Pesquisar..." autocomplete="off" class="sbx-custom__input" id="pesquisadora">
                 <button type="submit" class="sbx-custom__submit" onclick="searchData()">
@@ -222,27 +222,8 @@
             
             // Montagem da grid (complicado)
             $dados = "<div class='grid-editora'>
-
-            <div class='titulos'>
-                ID
-                <a href='editora.php?id=0&pagina=$paginaAtual''>
-                    <img src='img/up.png'>
-                </a>
-                <a href='editora.php?id=1&pagina=$paginaAtual'>
-                    <img src='img/up.png' style='transform: rotate(180deg);'>
-                </a>
-            </div>
-
-            <div class='titulos'>
-                NOME
-                <a href='editora.php?name=0&pagina=$paginaAtual'>
-                    <img src='img/up.png'>
-                </a>
-                <a href='editora.php?name=1&pagina=$paginaAtual'>
-                    <img src='img/up.png' style='transform: rotate(180deg);'>
-                </a>
-            </div>
-            
+            <div class='titulos'>ID</div>
+            <div class='titulos'>NOME</div>
             <div class='titulos'>EMAIL</div>
             <div class='titulos'>TELEFONE</div>
             <div class='titulos'>AÇÕES</div>";

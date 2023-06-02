@@ -2,11 +2,108 @@
 @import url('https://fonts.googleapis.com/css2?family=Castoro+Titling&display=swap');
 
 /* Celular */
-@media screen and (max-width: 500px){
-   main{
-      background-color: rgb(155, 71, 71);
+@media screen and (max-width: 600px){
+   /* Navbar */
+   .navbar-collapse{
+      margin-top: 2px;
    }
 
+   /* Dashboard */
+   div.grid-dash{
+      grid-template-columns: auto;
+      row-gap: 15px;
+   }
+   div#container-maisalugado{
+      width: fit-content;
+   }      
+   div#container-ultimoalugado{
+      width: fit-content;
+   }
+   div#container-emprestados{
+      width: fit-content;
+   }
+   /* Tabelas */
+   main{
+      width: 400px;
+   }
+   .titulo-pg{
+      display: block;
+   }
+   .novo-btn{
+      margin-left: 0;
+   }
+   form.searchbox{
+      margin-left: 125px;
+      margin-top: -10px;
+   }
+   .sbx-custom{
+      width: 235px;
+   }
+}
+
+@media screen and (min-width: 601px) and (max-width: 800px){
+   /* Navbar */
+   .navbar-collapse{
+      margin-top: 2px;
+   }
+
+   /* Dashboard */
+   div.grid-dash{
+      grid-template-columns: auto;
+      row-gap: 15px;
+   }
+   div#container-maisalugado{
+      width: fit-content;
+   }      
+   div#container-ultimoalugado{
+      width: fit-content;
+   }
+   div#container-emprestados{
+      width: fit-content;
+   }
+   /* Tabelas */
+   main{
+      width: 520px;
+   }
+   .titulo-pg{
+      display: block;
+   }
+   .novo-btn{
+      margin-left: 0;
+   }
+   form.searchbox{
+      margin-left: 125px;
+      margin-top: -10px;
+   }
+   .sbx-custom{
+      width: 235px;
+   }
+}
+
+@media screen and (min-width: 801px) and (max-width: 1000px){
+   /* Navbar */
+   .navbar-collapse{
+      margin-top: 2px;
+   }
+
+   /* Dashboard */
+   div.grid-dash{
+      grid-template-columns: auto;
+      row-gap: 15px;
+   }
+   div#container-maisalugado{
+      width: fit-content;
+   }      
+   div#container-ultimoalugado{
+      width: fit-content;
+   }
+   div#container-emprestados{
+      width: fit-content;
+   }
+   /* Tabelas */
+   main{
+      width: 660px;
+   }
    .titulo-pg{
       display: block;
    }
